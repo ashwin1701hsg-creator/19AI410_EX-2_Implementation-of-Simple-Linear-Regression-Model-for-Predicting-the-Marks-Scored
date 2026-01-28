@@ -1,4 +1,4 @@
-![WhatsApp Image 2026-01-28 at 1 55 53 PM](https://github.com/user-attachments/assets/edd5e3d1-d213-4511-b17f-d6980b268e02)# Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored
+# Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored
 
 ## AIM:
 To write a program to predict the marks scored by a student using the simple linear regression model.
