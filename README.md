@@ -14,37 +14,34 @@ To write a program to predict the marks scored by a student using the simple lin
 4.Predict the salary values, display slope and intercept, and plot the regression line with the data points.
 ## Program:
 ```
-# Import required libraries
-import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LogisticRegression
 
-# Load the dataset
-data = pd.read_csv("data.csv")
+# Dataset: marks vs result
+X = np.array([[30], [35], [40], [45], [50], [55], [60], [65]])
+y = np.array([0, 0, 0, 0, 1, 1, 1, 1])   # 0 = Fail, 1 = Pass
 
-# Independent variable (X) and Dependent variable (y)
-X = data[['Experience']]   # must be 2D
-y = data['Salary']
-
-# Create the Linear Regression model
-model = LinearRegression()
-
-# Train the model
+# Create and train model
+model = LogisticRegression()
 model.fit(X, y)
 
-# Predict values
-y_pred = model.predict(X)
+# Predict for a new student
+marks = [[48]]
+result = model.predict(marks)
+print("Prediction (0=Fail, 1=Pass):", result)
 
-# Display slope and intercept
-print("Slope (m):", model.coef_[0])
-print("Intercept (c):", model.intercept_)
+# Plot data points
+plt.scatter(X, y, color='red', label='Actual Data')
 
-# Plot the data and regression line
-plt.scatter(X, y)
-plt.plot(X, y_pred)
-plt.xlabel("Experience")
-plt.ylabel("Salary")
-plt.title("Simple Linear Regression")
+# Plot logistic regression curve
+X_test = np.linspace(25, 70, 100).reshape(-1, 1)
+plt.plot(X_test, model.predict_proba(X_test)[:,1], label='Prediction Curve')
+
+plt.xlabel("Marks")
+plt.ylabel("Probability of Pass")
+plt.title("Logistic Regression: Pass / Fail Prediction")
+plt.legend()
 plt.show()
 ```
 
